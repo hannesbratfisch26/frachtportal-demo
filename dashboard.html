@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sendungen - FrachtPortal Demo</title>
+<link rel="stylesheet" href="style.css">
+<script>if (!sessionStorage.getItem("fp_session")) location.replace("index.html");</script>
+</head>
+<body>
+<header>
+ <div class="logo">FrachtPortal <span>Partnerzugang</span></div><span class="badge">Demo</span>
+ <div class="right"><span id="who"></span><button id="logout" type="button">Abmelden</button></div>
+</header>
+<main>
+ <h2>Sendungsübersicht</h2>
+ <div class="muted">Auftraggeber: Demo Spedition GmbH, Berlin - Frachtführer: Transport Muster Sp. z o.o. - Zeitraum: November 2026</div>
+ <div class="stats">
+  <div class="panel stat"><span class="muted">Sendungen gesamt</span><b id="sAll">0</b></div>
+  <div class="panel stat"><span class="muted">Zugestellt</span><b id="sDel">0</b></div>
+  <div class="panel stat"><span class="muted">Unterwegs</span><b id="sOn">0</b></div>
+  <div class="panel stat"><span class="muted">Verzögert</span><b id="sLate">0</b></div>
+ </div>
+ <div class="panel">
+  <div class="toolbar">
+   <input type="text" id="q" placeholder="Sendungsnr., Ort, Ware suchen">
+   <select id="f"><option value="">Alle Status</option><option>Zugestellt</option><option>Unterwegs</option><option>Verzögert</option></select>
+   <span class="small" style="margin-left:auto">Stand: 24.11.2026, 07:30 Uhr</span>
+  </div>
+  <table id="shipments">
+   <thead><tr><th>Sendungsnr.</th><th>Abholdatum</th><th>Abholort → Zielort</th><th>Ware</th><th>Kennzeichen</th><th>Status</th><th>Zustellung</th><th>Abliefernachweis</th></tr></thead>
+   <tbody></tbody>
+  </table>
+ </div>
+ <p class="small">Fiktives Demo-System. Alle Firmen, Personen und Sendungen sind frei erfunden.</p>
+</main>
+<script src="data.js"></script>
+<script>
+var sess = JSON.parse(sessionStorage.getItem("fp_session") || "{}");
+document.getElementById("who").textContent = sess.user || "";
+document.getElementById("logout").onclick = function () { sessionStorage.removeItem("fp_session"); location.href = "index.html"; };
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function fmtKg(n){return n.toLocaleString("de-DE")+" kg";}
+function render(){
+  var q=document.getElementById("q").value.toLowerCase(), f=document.getElementById("f").value, h="";
+  SHIPMENTS.forEach(function(s){
+    var txt=(s.nr+" "+s.von+" "+s.nach+" "+s.ware).toLowerCase();
+    if(q && txt.indexOf(q)<0) return; if(f && s.status!==f) return;
+    var ware=esc(s.ware)+'<div class="small">'+(s.pal>1?s.pal+" Paletten, ":"")+fmtKg(s.kg)+"</div>";
+    var st='<span class="st st-'+s.status+'">'+s.status+"</span>"+(s.info?'<div class="small">'+esc(s.info)+"</div>":"");
+    var pod=s.pod?'<a href="'+s.pod+'" download>POD/CMR (PDF)</a>':'<span class="small">noch nicht verfügbar</span>';
+    h+="<tr><td class=\"mono\">"+s.nr+"</td><td>"+s.datum+"</td><td>"+esc(s.von)+" → "+esc(s.nach)+"</td><td>"+ware+"</td><td class=\"mono\">"+s.kz+"</td><td>"+st+"</td><td>"+(s.zustellung?s.zustellung+" Uhr":"-")+"</td><td>"+pod+"</td></tr>";
+  });
+  document.querySelector("#shipments tbody").innerHTML=h||'<tr><td colspan="8" class="muted">Keine Sendungen gefunden.</td></tr>';
+}
+function count(st){return SHIPMENTS.filter(function(s){return !st||s.status===st;}).length;}
+document.getElementById("sAll").textContent=count(); document.getElementById("sDel").textContent=count("Zugestellt");
+document.getElementById("sOn").textContent=count("Unterwegs"); document.getElementById("sLate").textContent=count("Verzögert");
+document.getElementById("q").oninput=render; document.getElementById("f").onchange=render; render();
+</script>
+</body>
+</html>

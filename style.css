@@ -1,0 +1,40 @@
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:14px;color:#1d2733;background:#f2f4f7}
+a{color:#1a5490}
+header{background:#123a63;color:#fff;height:56px;display:flex;align-items:center;padding:0 24px;gap:12px}
+header .logo{font-weight:700;font-size:17px;letter-spacing:.2px}
+header .logo span{font-weight:400;color:#b9cbe0}
+.badge{background:#e8a33d;color:#1d2733;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px}
+header .right{margin-left:auto;display:flex;align-items:center;gap:16px;font-size:13px;color:#d5e0ec}
+header button{background:transparent;border:1px solid #6d8fb3;color:#fff;padding:5px 12px;border-radius:3px;cursor:pointer;font-size:13px}
+header button:hover{background:#1c4b7c}
+.login-wrap{display:flex;justify-content:center;padding:80px 16px}
+.panel{background:#fff;border:1px solid #d6dce4;border-radius:4px}
+.login{width:380px;padding:28px 32px}
+.login h1{font-size:19px;margin:0 0 4px}
+.login p.sub{margin:0 0 22px;color:#5b6b7c;font-size:13px}
+label{display:block;font-size:13px;font-weight:600;margin:0 0 5px}
+input[type=text],input[type=email],input[type=password]{width:100%;padding:9px 10px;border:1px solid #b8c2ce;border-radius:3px;font-size:14px;margin-bottom:16px}
+input:focus{outline:2px solid #2f6db0;outline-offset:-1px;border-color:#2f6db0}
+.btn{background:#1a5490;color:#fff;border:0;padding:10px 16px;border-radius:3px;font-size:14px;font-weight:600;cursor:pointer;width:100%}
+.btn:hover{background:#154677}
+.error{display:none;background:#fdecea;border:1px solid #f0b4ad;color:#8a1f13;padding:9px 11px;border-radius:3px;font-size:13px;margin-bottom:16px}
+.foot{font-size:12px;color:#7a8794;margin-top:18px}
+main{max-width:1240px;margin:0 auto;padding:24px}
+h2{font-size:18px;margin:0 0 4px}
+.muted{color:#5b6b7c;font-size:13px}
+.stats{display:flex;gap:12px;margin:18px 0}
+.stat{flex:1;padding:14px 16px}
+.stat b{display:block;font-size:22px;margin-top:2px}
+.toolbar{display:flex;gap:10px;align-items:center;padding:12px 16px;border-bottom:1px solid #e1e6ec}
+.toolbar input,.toolbar select{padding:6px 8px;border:1px solid #b8c2ce;border-radius:3px;font-size:13px;margin:0;width:auto}
+table{width:100%;border-collapse:collapse}
+th{background:#eef2f6;text-align:left;font-size:12px;color:#3d4c5c;padding:9px 12px;border-bottom:1px solid #d6dce4;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #e9edf2;vertical-align:top}
+tr:hover td{background:#f8fafc}
+.st{display:inline-block;padding:2px 8px;border-radius:3px;font-size:12px;font-weight:600;white-space:nowrap}
+.st-Zugestellt{background:#e3f2e8;color:#1e6b3a}
+.st-Unterwegs{background:#e4eefa;color:#1a5490}
+.st-Verzögert{background:#fdeee0;color:#9a4a07}
+.small{font-size:12px;color:#5b6b7c}
+.mono{font-family:Menlo,Consolas,monospace;font-size:13px}

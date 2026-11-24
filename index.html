@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Anmelden - FrachtPortal Demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><div class="logo">FrachtPortal <span>Partnerzugang</span></div><span class="badge">Demo</span></header>
+<div class="login-wrap">
+ <form class="panel login" id="loginForm" method="post" action="#" autocomplete="on">
+  <h1>Anmelden</h1>
+  <p class="sub">Transport Muster Sp. z o.o. - Portal für Auftraggeber</p>
+  <div class="error" id="loginError" role="alert">Benutzername oder Passwort ist falsch.</div>
+  <label for="username">Benutzername (E-Mail)</label>
+  <input type="email" id="username" name="username" autocomplete="username" required>
+  <label for="password">Passwort</label>
+  <input type="password" id="password" name="password" autocomplete="current-password" required>
+  <button type="submit" class="btn" id="loginButton">Anmelden</button>
+  <div class="foot">Passwort vergessen? Wenden Sie sich an Ihre Disposition.<br>Fiktives Demo-System, keine echten Daten.</div>
+ </form>
+</div>
+<script>
+if (sessionStorage.getItem("fp_session")) location.replace("dashboard.html");
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  var u = document.getElementById("username").value.trim().toLowerCase();
+  var p = document.getElementById("password").value;
+  if (u === "disposition@demo-spedition.de" && p === "Demo-Portal-2026!") {
+    sessionStorage.setItem("fp_session", JSON.stringify({ user: u, at: Date.now() }));
+    location.href = "dashboard.html";
+  } else {
+    document.getElementById("loginError").style.display = "block";
+    document.getElementById("password").value = "";
+    document.getElementById("password").focus();
+  }
+});
+</script>
+</body>
+</html>
