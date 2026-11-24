@@ -1,0 +1,20 @@
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#13232b;background:#eef3f4;font-size:14px}
+header{background:#063b48;color:#fff;height:60px;display:flex;align-items:center;padding:0 28px;gap:12px}
+.mark{width:30px;height:30px;background:#18a39a;clip-path:polygon(0 70%,100% 70%,85% 100%,15% 100%);position:relative}
+.brand{font-weight:800;letter-spacing:1.5px;font-size:16px}.brand span{display:block;font-weight:400;font-size:11px;letter-spacing:.5px;color:#9cc7cc}
+.demo{background:#ffcf4a;color:#063b48;font-weight:800;font-size:11px;padding:2px 8px;border-radius:3px}
+.right{margin-left:auto;display:flex;gap:14px;align-items:center;font-size:13px;color:#cfe3e5}.right button{background:none;border:1px solid #5f9aa3;color:#fff;border-radius:3px;padding:5px 12px;cursor:pointer}
+.wrap{max-width:1000px;margin:28px auto;padding:0 16px}.box{background:#fff;border:1px solid #d3dfe1;border-radius:6px;padding:22px 26px;margin-bottom:18px}
+h1{font-size:20px;margin:0 0 4px}.sub{color:#557077;margin:0 0 18px;font-size:13px}
+label{display:block;font-weight:700;font-size:12px;color:#3c5960;margin-bottom:5px}
+input{padding:10px;border:1px solid #a8bcc0;border-radius:4px;font-size:15px;width:100%;margin-bottom:14px}
+.btn{background:#0b6e78;color:#fff;border:0;border-radius:4px;padding:11px 18px;font-weight:700;cursor:pointer;font-size:14px}
+.row{display:flex;gap:10px;align-items:end}.row input{margin:0;width:340px}
+.err{color:#a2261b;display:none;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid #d3dfe1;border-radius:5px;margin:16px 0}
+.grid div{padding:11px 14px;border-bottom:1px solid #e3ebec;border-right:1px solid #e3ebec}.grid small{display:block;font-size:11px;color:#5f7a80;text-transform:uppercase;letter-spacing:.4px}.grid b{font-size:14px}
+.st{padding:4px 10px;border-radius:12px;font-weight:700;font-size:13px}.ok{background:#dcf3ee;color:#0d6b5c}.warn{background:#fff0cc;color:#8a5a00}
+.alert{background:#fff6e0;border-left:4px solid #e6a600;padding:12px 14px;margin:12px 0;font-size:13px}
+table{width:100%;border-collapse:collapse}th{text-align:left;font-size:11px;color:#5f7a80;text-transform:uppercase;padding:8px;border-bottom:2px solid #d3dfe1}td{padding:9px 8px;border-bottom:1px solid #e9eff0}
+.strike{text-decoration:line-through;color:#8b9ea2;font-weight:400;margin-right:6px}
+footer{text-align:center;color:#6d858a;font-size:12px;padding:24px}

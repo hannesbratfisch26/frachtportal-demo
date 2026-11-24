@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Customer Login - Nordmeer Container Line (Demo)</title><link rel="stylesheet" href="style.css"></head><body>
+<header><div class="mark"></div><div class="brand">NORDMEER<span>CONTAINER LINE</span></div><div class="right"><span class="demo">DEMO</span></div></header>
+<div class="wrap" style="max-width:420px;margin-top:70px"><form class="box" id="loginForm" method="post" action="#">
+<h1>myNordmeer Login</h1><p class="sub">Shipment tracking for registered customers and forwarders</p>
+<div class="err" id="loginError" role="alert">Invalid user ID or password.</div>
+<label for="username">User ID (e-mail)</label><input type="email" id="username" name="username" autocomplete="username" required>
+<label for="password">Password</label><input type="password" id="password" name="password" autocomplete="current-password" required>
+<button class="btn" id="loginButton" type="submit" style="width:100%">Sign in</button>
+<p class="sub" style="margin:14px 0 0">Fictitious demo system, no real data.</p></form></div>
+<footer>Nordmeer Container Line ist eine erfundene Reederei. Demo, alle Daten erfunden.</footer>
+<script>
+if (sessionStorage.getItem("nm_session")) location.replace("tracking.html");
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  var u = document.getElementById("username").value.trim().toLowerCase(), p = document.getElementById("password").value;
+  if (u === "export@demo-spedition.de" && p === "Nordmeer-Demo-26!") { sessionStorage.setItem("nm_session", u); location.href = "tracking.html"; }
+  else { document.getElementById("loginError").style.display = "block"; document.getElementById("password").value = ""; }
+});
+</script></body></html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Track Container - Nordmeer Container Line (Demo)</title><link rel="stylesheet" href="style.css">
+<script>if (!sessionStorage.getItem("nm_session")) location.replace("index.html");</script></head><body>
+<header><div class="mark"></div><div class="brand">NORDMEER<span>CONTAINER LINE</span></div><div class="right"><span class="demo">DEMO</span><span id="who"></span><button id="logout">Sign out</button></div></header>
+<div class="wrap"><div class="box"><h1>Track &amp; Trace</h1><p class="sub">Search by container number or Bill of Lading number</p>
+<form id="f" class="row"><div><label for="q">Container or B/L number</label><input id="q" placeholder="NMCU1234567 or NMCL26XXX0000" autocomplete="off"></div><button class="btn" id="search" type="submit">Search</button></form>
+<p class="err" id="err" style="margin-top:12px">No container or B/L found. Please check the number.</p></div>
+<div id="res"></div></div>
+<footer>Nordmeer Container Line ist eine erfundene Reederei. Demo, alle Daten erfunden.</footer>
+<script src="data.js"></script>
+<script>
+document.getElementById("who").textContent = sessionStorage.getItem("nm_session");
+document.getElementById("logout").onclick = function(){ sessionStorage.removeItem("nm_session"); location.href="index.html"; };
+var M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function d(o){var x=new Date();x.setHours(0,0,0,0);x.setDate(x.getDate()+o);return ("0"+x.getDate()).slice(-2)+" "+M[x.getMonth()]+" "+x.getFullYear()}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})}
+function dt(n,o){return (n!==o?'<span class="strike">'+d(o)+'</span>':'')+d(n)}
+function show(q){q=q.toUpperCase().replace(/[\s-]/g,"");var k=NM[q]?q:NM_BL[q];var s=NM[k];document.getElementById("err").style.display=s?"none":"block";var r=document.getElementById("res");if(!s){r.innerHTML="";return}
+ r.innerHTML='<div class="box"><h1>'+k+' &nbsp;<span class="st '+s.tone+'">'+s.status+'</span></h1><p class="sub">B/L '+s.bl+' · '+s.type+' · '+s.dir+'</p>'+
+ (s.oldVessel?'<div class="alert"><b>Rollover notice:</b> Container was not loaded on '+s.oldVessel+' (overbooking). Rebooked on '+s.vessel+' '+s.voy+'. New ETD '+d(s.etd)+', new ETA '+d(s.eta)+'.</div>':'')+
+ '<div class="grid"><div><small>Port of loading</small><b>'+s.pol+'</b></div><div><small>Transshipment</small><b>'+(s.ts||"none")+'</b></div><div><small>Port of discharge</small><b>'+s.pod+'</b></div>'+
+ '<div><small>Vessel / voyage</small><b>'+s.vessel+' '+s.voy+'</b></div><div><small>ETD</small><b>'+dt(s.etd,s.etdOrig)+'</b></div><div><small>ETA</small><b>'+dt(s.eta,s.etaOrig)+'</b></div></div>'+
+ '<div style="font-size:13px;color:#3c5960;margin-bottom:10px">Shipper: '+esc(s.shipper)+'</div>'+
+ '<table><tr><th>Date</th><th>Event</th><th>Location / details</th></tr>'+s.ev.slice().reverse().map(function(e){return '<tr><td>'+d(e[0])+'</td><td><b>'+e[1]+'</b></td><td>'+esc(e[2])+'</td></tr>'}).join("")+'</table></div>'}
+document.getElementById("f").addEventListener("submit",function(e){e.preventDefault();show(document.getElementById("q").value)});
+</script></body></html>
